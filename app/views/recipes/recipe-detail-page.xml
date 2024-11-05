@@ -1,0 +1,42 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="{{ recipe.name }}" class="action-bar">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <ActionItem tap="{{ onFavoriteTap }}" ios.position="right" android.position="actionBar">
+            <Label text="{{ recipe.isFavorite ? '&#xf004;' : '&#xf08a;' }}" class="fas text-2xl" />
+        </ActionItem>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Image src="{{ recipe.imageUrl }}" class="w-full h-48" stretch="aspectFill" />
+            
+            <Label text="{{ recipe.description }}" textWrap="true" class="mt-4 text-gray-600" />
+            
+            <GridLayout columns="auto, auto, *" class="mt-4">
+                <Label col="0" text="&#xf017;" class="fas" />
+                <Label col="1" text="{{ recipe.cookingTime }}min" class="ml-1" />
+                <Label col="2" text="{{ recipe.difficulty }}" class="text-right" />
+            </GridLayout>
+
+            <Label text="Ingredienti" class="text-lg font-bold mt-4 mb-2" />
+            <ListView items="{{ recipe.ingredients }}" height="{{ recipe.ingredients.length * 50 }}">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="p-2">
+                        <Label col="0" text="{{ isAvailable ? '&#xf058;' : '&#xf057;' }}" class="fas" />
+                        <Label col="1" text="{{ name }}" class="ml-2" />
+                        <Label col="2" text="{{ quantity }} {{ unit }}" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <Label text="Istruzioni" class="text-lg font-bold mt-4 mb-2" />
+            <ListView items="{{ recipe.instructions }}" height="{{ recipe.instructions.length * 50 }}">
+                <ListView.itemTemplate>
+                    <Label text="{{ $index + 1 }}. {{ $value }}" textWrap="true" class="p-2" />
+                </ListView.itemTemplate>
+            </ListView>
+
+            <Button text="Aggiungi ingredienti mancanti alla lista" tap="{{ onAddToShoppingList }}" class="mt-4 -primary" isEnabled="{{ recipe.availableIngredients < recipe.totalIngredients }}" />
+        </StackLayout>
+    </ScrollView>
+</Page>

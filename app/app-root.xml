@@ -1,0 +1,11 @@
+<TabView androidTabsPosition="bottom">
+    <TabViewItem title="Frigorifero" iconSource="font://&#xf0f3;">
+        <Frame defaultPage="views/fridge/fridge-page" />
+    </TabViewItem>
+    <TabViewItem title="Ricette" iconSource="font://&#xf0f5;">
+        <Frame defaultPage="views/recipes/recipes-page" />
+    </TabViewItem>
+    <TabViewItem title="Lista Spesa" iconSource="font://&#xf07a;">
+        <Frame defaultPage="views/shopping/shopping-page" />
+    </TabViewItem>
+</TabView>

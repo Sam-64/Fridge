@@ -1,0 +1,27 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Il Mio Frigorifero" class="action-bar">
+        <ActionItem tap="onScanTap" ios.position="right" android.position="actionBar">
+            <Label text="&#xf030;" class="fas text-2xl" />
+        </ActionItem>
+        <ActionItem tap="onAddTap" ios.position="right" android.position="actionBar">
+            <Label text="&#xf067;" class="fas text-2xl" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <SearchBar row="0" hint="Cerca ingredienti..." text="{{ searchQuery }}" />
+        
+        <ListView row="1" items="{{ ingredients }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, auto" class="card p-2">
+                    <Image col="0" src="{{ categoryIcon }}" class="w-12 h-12" />
+                    <StackLayout col="1" class="ml-2">
+                        <Label text="{{ name }}" class="text-lg" />
+                        <Label text="{{ expiryDate }}" class="{{ expiryStatus }}" />
+                    </StackLayout>
+                    <Label col="2" text="&#xf142;" class="fas text-xl" tap="onItemMenu" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>
